@@ -4,7 +4,7 @@ pipeline {
 
     agent {
         docker {
-            image 'nginx'
+            image 'node'
             args '-u root'
         }
     }
