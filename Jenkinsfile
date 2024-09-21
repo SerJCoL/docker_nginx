@@ -1,11 +1,25 @@
+#!/usr/bin/env groovy
+
 pipeline {
+
     agent {
-        docker { image 'nginx:latest' }
+        docker {
+            image 'node'
+            args '-u root'
+        }
     }
+
     stages {
-        stage('Installing Docker') {
+        stage('Build') {
             steps {
-                sh 'node --version'
+                echo 'Building...'
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'npm test'
             }
         }
     }
