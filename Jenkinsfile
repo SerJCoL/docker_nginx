@@ -1,13 +1,28 @@
+#!/usr/bin/env groovy
+
 pipeline {
-    agent any
+
+    agent {
+        docker {
+            image 'node:14'
+            args '-u root'
+        }
+    }
 
     stages {
-        stage('Run Docker') {
+        stage('Build') {
             steps {
-                script {
-                    img = 'node:14'
-                    docker. image("${img}").run('-d -p 9889:80')
-                }
+                echo 'Building...'
+				sh 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
+                sh 'apt-get install -y nodejs' 
+                sh 'npm install'
+
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'npm test'
             }
         }
     }
