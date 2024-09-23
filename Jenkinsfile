@@ -5,7 +5,7 @@ pipeline {
         stage('Run Docker') {
             steps {
                 script {
-                    img = 'node:14'
+                    img = 'nginx'
                     docker. image("${img}").run('-d -p 9889:80')
                 }
             }
