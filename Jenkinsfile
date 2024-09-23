@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     img = 'nginx'
-                    docker. image("${img}").run('-d -p 9889:80 --name web -v index.html:/var/www/html/html')
+                    docker. image("${img}").run('-d -p 9889:80 --name web -v index.html:/var/www/html')
                 }
             }
         }
