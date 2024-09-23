@@ -1,5 +1,3 @@
-#!/usr/bin/env groovy
-
 pipeline {
     agent any
 
@@ -8,7 +6,7 @@ pipeline {
             steps {
                 script {
                     img = 'node:14'
-                    docker. image("$(img}").run('-d -p 9889:80')
+                    docker. image("${img}").run('-d -p 9889:80')
                 }
             }
         }
