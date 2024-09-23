@@ -1,9 +1,8 @@
-FROM nginx:latest
+FROM node:14
 WORKDIR /usr/share/nginx/html/
-
-
 COPY ./index.html /usr/share/nginx/html/index.html
-RUN apt-get update && apt-get install -y nodejs
 
+# expose port 9889 80 and start the app
 EXPOSE 9889 80
 CMD ["nginx", "-g", "daemon off;"]
+#CMD ["npm", "start"]
