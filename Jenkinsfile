@@ -1,25 +1,15 @@
 #!/usr/bin/env groovy
 
 pipeline {
-
-    agent {
-        docker {
-            image 'nginx'
-            args '-u root'
-        }
-    }
+    agent any
 
     stages {
-        stage('Build') {
+        stage('Run Docker') {
             steps {
-                echo 'Building...'
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'npm test'
+                script {
+                    img = 'node:14'
+                    docker. image("$(img}").run('-d -p 9889:80')
+                }
             }
         }
     }
