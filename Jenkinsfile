@@ -13,7 +13,7 @@ pipeline {
         stage('Prune') {
             steps {
                 echo 'Pruning...'
-                sh 'docker system prune -f'
+                sh 'docker rm $(docker ps -qa)'
             }
 		}
     }
