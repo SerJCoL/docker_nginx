@@ -10,11 +10,17 @@ pipeline {
                 }
             }
         }
-        stage('Prune') {
+        stage('Stop') {
             steps {
-                echo 'Pruning...'
-                sh 'docker rm $(docker ps -qa)'
+                echo 'Proccessing...'
+                sh 'docker stop $(docker ps -a -q)'
             }
 		}
+        stage('Delete container') {
+            steps {
+                echo 'Deleting...'
+                sh 'docker container rm $(docker ps -a -q)'
+            }
+	}
     }
 }
